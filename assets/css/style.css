@@ -951,7 +951,7 @@ input{
     display: grid;
     row-gap: 1rem;
 }
-.container__card{
+.contact__card{
     background-color: var(--box-color);
     padding: 1rem;
     border-radius: .5rem;
