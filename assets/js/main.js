@@ -97,17 +97,46 @@ const modalViews = document.querySelectorAll('.services__modal'),
 
 			})
 /*=============== SWIPER TESTIMONIAL ===============*/
-var swiper = new Swiper(".mySwiper", {
-	spaceBetween: 30,
+let swiper = new Swiper(".testimonials__container", {
+	spaceBetween: 24,
+	loop:true,
+	grabCursor:true,
+
 	pagination: {
 	  el: ".swiper-pagination",
 	  clickable: true,
 	},
+	breakpoints: {
+        576: {
+          slidesPerView: 2,
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 48,
+        },
+      },
+
   });
 
 /*=============== INPUT ANIMATION ===============*/
+const inputs = document.querySelectorAll(".input");
 
+function focusfunc(){
+	let parent = this.parentNode;
+	parent.classList.add("focus");
+}
 
+function blurfunc(){
+	let parent = this.parentNode;
+	if(this.value == ""){
+		parent.classList.remove("focus");
+	}
+}
+
+inputs.forEach((input) => {
+	input.addEventListener("focus", focusfunc);
+	input.addEventListener("blur", blurfunc);
+})
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
 
 
