@@ -1,13 +1,23 @@
 /*=============== SHOW SIDEBAR ===============*/
-
+const navMenu = document.getElementById('sidebar'),
+	navToggle = document.getElementById('nav-toggle'),
+	navClose = document.getElementById('nav-close')
 
 /*===== SIDEBAR SHOW =====*/
 /* Validate If Constant Exists */
-
+if(navToggle){
+	navToggle.addEventListener("click", () => {
+		navMenu.classList.add('show-sidebar')
+	})
+}
 
 /*===== SIDEBAR HIDDEN =====*/
 /* Validate If Constant Exists */
-
+if(navClose){
+	navClose.addEventListener("click", () => {
+		navMenu.classList.remove('show-sidebar')
+	})
+}
 
 /*=============== SKILLS TABS ===============*/
 const tabs = document.querySelectorAll('[data-target]'),
@@ -138,6 +148,35 @@ inputs.forEach((input) => {
 	input.addEventListener("blur", blurfunc);
 })
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
+//get all sections that have an id defined
+const sections = document.querySelectorAll("section[id]");
 
+//add an event listener listening for scroll
+window.addEventListener("scroll",navHighlighter);
+
+function navHighlighter()
+{
+	//get current scroll position
+	let scrollY = window.pageYOffset;
+	//Now we loop through sections to get height, top and ID values for each
+	sections.forEach(current =>  {
+		const sectionHeight = current.offsetHeight;
+		const sectionTop = current.offsetTop - 50,
+		sectionId = current.getAttribute("id");
+		/* - If our current scroll positionenters the space where current section on screen is add active class to correspoinding navigation link,else remove it- To know which link needs an active class, we use sectionId variable we are getting while looping through section as  an selector*/
+
+		if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight)
+		{
+			document.querySelector('.nav__menu a[href*=' +sectionId+ ']').classList.add("active-link")
+		}
+
+		else
+		{
+			document.querySelector('.nav__menu a[href*=' +sectionId+ ']').classList.remove("active-link")
+		}
+
+		 
+	})
+}
 
 /*=============== SHOW SCROLL UP ===============*/
